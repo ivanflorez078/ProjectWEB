@@ -1,0 +1,87 @@
+/*recetear los margenes*/
+*{
+    /*cambiar de box-sizing a border-box*/
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*de esta manera el body ocupa el 100% de la pagina (alto)*/
+html{
+    height: 100%;
+}
+
+body{
+    font-size: l"public Sans", Sans-serif;
+    font-size: 1.7rem;
+    min-height: 100%; /*se estiran los elementos para que ocupen el 100% de la pagina (ancho)*/
+}
+/*se le agregan estilos a los desendientes de la clase Grid-Container*/
+.grid-container > * {
+    box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+/*se le asigna al header un area espcecifica de la plantilla y a si con los demas elementos del grid*/
+.header{
+    grid-area: header;
+    background-color: cornflowerblue;
+}
+.navbar{
+    grid-area: navbar;
+    background-color: springgreen;
+}
+.sidebar{
+    grid-area: sidebar;
+    background-color: coral;
+}
+.main{
+    grid-area: main;
+    background-color: chocolate;
+}
+.footer{
+    grid-area: footer;
+    background-color: antiquewhite;
+}
+
+/*Diseño para Moviles*/
+.grid-container{
+    display: grid; /*Combertir en grid la clase y los elementos de primer nivel de la clase seran grid-item*/
+    gap: 10px; /*separacion entre los elementos*/
+    grid-template: /*Se definen las areas del grid*/
+    "header" 100px
+    "navbar" 50px
+    "main" auto
+    "sidebar" 100px
+    "footer" 100px
+    ;
+}
+/*Diseño para escritorio*/
+@media (min-width: 900px) { /*todo lo que esta dentro de la @media cery se va aejecutar cuando tenga como minimo 900px*/
+    .grid-container {
+        /*grid-template-columns: 200px auto;
+        grid-template-rows: 100px 50px auto 100px;
+      grid-template-areas: 
+      "header  header"
+      "navbar  navbar"
+      "sidebar main"
+      "footer  footer";  */
+      grid-template: 
+      "header  header header" 100px /*se ajusta el alto de la primera fila*/
+      "navbar  main sidebar" 50px /*se ajusta el alto de la segunda fila*/
+      "footer footer footer" 100px / 
+      200px    auto  200px; /*se ajusta el alto de la tercera fila*/ /*se le ajustan el ancho de las columnas*/
+    }
+}
+/*Diseño para Tablets*/
+@media (min-width: 600px) { /*todo lo que esta dentro de la @media cery se va aejecutar cuando tenga como minimo 600px*/
+    .grid-container {
+        
+      grid-template: 
+      "header  header" 100px /*se ajusta el alto de la primera fila*/
+      "navbar  navbar" 50px  /*se ajusta el alto de la segunda fila*/
+      "sidebar main" auto    /*se ajusta el alto de la tercera fila*/
+      "footer footer"100px / 
+      200px    auto; /*se ajusta el alto de la cuarta columna*/ /*se le ajustan el ancho de las columnas*/
+    }
+}
